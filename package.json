@@ -1,0 +1,17 @@
+{
+  "name": "dci-doc",
+  "version": "1.0.0",
+  "description": "Documentation for DCI",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gitbook serve",
+    "build": "gitbook pdf ./ ./dci-doc-\"`echo $npm_package_version`\".pdf",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gitbook": "^3.2.3",
+    "gitbook-cli": "^2.3.2"
+  }
+}

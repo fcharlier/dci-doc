@@ -1,0 +1,7 @@
+{
+  "root": "./docs",
+  "styles": {
+    "website": "styles.css"
+  },
+  "plugins": ["-sharing"]
+}
