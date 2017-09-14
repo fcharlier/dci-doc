@@ -1,0 +1,482 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>dci-feeder · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../dci-ui/" />
+    
+    
+    <link rel="prev" href="../dci-control-server/docs/signature_authentication.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../terminology.html">
+            
+                <a href="../terminology.html">
+            
+                    
+                    Terminology
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../dci-dev-env/">
+            
+                <a href="../dci-dev-env/">
+            
+                    
+                    dci-dev-env
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../dci-ansible-agent/">
+            
+                <a href="../dci-ansible-agent/">
+            
+                    
+                    dci-ansible-agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../dci-control-server/">
+            
+                <a href="../dci-control-server/">
+            
+                    
+                    dci-control-server
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../dci-control-server/docs/signature_authentication.html">
+            
+                <a href="../dci-control-server/docs/signature_authentication.html">
+            
+                    
+                    signature_authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    dci-feeder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../dci-ui/">
+            
+                <a href="../dci-ui/">
+            
+                    
+                    dci-ui
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >dci-feeder</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="feeders">Feeders</h1>
+<p>A Feeder is a script in charge of uploading newer versions of Components to the Control-Server. They are run either event-based (new release) or schedule-based (e.g. once a day). Components are referenced via a Jobdefinition as created by the Feeder.</p>
+<p>Various Feeders can be configured to monitor for the creation of new artifacts. When a new artifact is available, the feeder can then upload the artifact as a Component to the DCI Control-Server and make a Jobdefinition available to the Agents so that they can create and execute a new job.</p>
+<p>DCI doesn&apos;t have a bias towards where the artifact comes from, so scripts can be easily created using the <code>dciclient</code> library.</p>
+<h2 id="installing-feeders">Installing Feeders</h2>
+<p>Installing the available feeders is as simple as installing the dci-feeders RPM.:</p>
+<pre><code>$ sudo yum install dci-feeders -y
+</code></pre><h2 id="setting-up-feeders">Setting Up Feeders</h2>
+<h3 id="configuring-dci-control-server">Configuring DCI Control-Server</h3>
+<p>On the DCI Control-Server, we need to create a team, create a new topic for that team, and then attach the newly created topic to the team. We&apos;ll be doing this via the <code>dcictl</code> application.</p>
+<p>You can install the <code>dcictl</code> application via the <code>python2-dciclient</code> or <code>python3-dciclient</code> package.</p>
+<p>Next we&apos;ll be doing the following things</p>
+<ul>
+<li>Create a team</li>
+<li>Create a topic</li>
+<li>Attach a topic to a team</li>
+</ul>
+<h4 id="setup-environment">Setup environment</h4>
+<p>To make things easier on ourselves, we&apos;re going to setup the environment so that we don&apos;t need to pass multiple flags to <code>dcictl</code> in order to connect and login to the API server.</p>
+<p>The following environment variables are available to us to save us some time:</p>
+<ul>
+<li><code>DCI_LOGIN</code> (equivalent <code>--dci-login</code>)</li>
+<li><code>DCI_PASSWORD</code> (equivalent <code>--dci-password</code>)</li>
+<li><code>DCI_CS_URL</code> (equivalent <code>--dci-cs-url</code>)</li>
+</ul>
+<p>You can export these variables or place them into your shell RC file (e.g. <code>~/.bashrc</code>) to save superfluous typing.</p>
+<p>Example:</p>
+<pre><code>export DCI_LOGIN=admin
+export DCI_PASSWORD=admin
+export DCI_CS_URL=&apos;http://127.0.0.1:80&apos;
+</code></pre><p>When done, source the file via <code>source ~/.bashrc</code> to load them into memory.</p>
+<h4 id="create-a-team">Create a team</h4>
+<p>Let&apos;s create a new team for our feeder. If you&apos;ve previously created a team then you can skip this step.</p>
+<pre><code>dcictl team-create --name testing_team
++------------+--------------------------------------+
+|  Property  |                Value                 |
++------------+--------------------------------------+
+| created_at | 2016-03-10T17:59:55.400292           |
+| etag       | 277a7c68108a462b4840ae0f3282b628     |
+| id         | 9db7f0c7-d7b8-473e-9e36-2e66ea0b1c6e |
+| name       | testing_team                         |
+| updated_at | 2016-03-10T17:59:55.400308           |
++------------+--------------------------------------+
+</code></pre><p>Note the <code>id</code> field of the team. You can get this information again via:</p>
+<pre><code>dcictl team-list
+</code></pre><p>The <code>etag</code> field is the entity tag, which changes whenever the resource data is updated. In order to update various resources on the DCI Control-Server, you will need this <code>etag</code> value.</p>
+<h4 id="create-a-topic">Create a topic</h4>
+<p>Topics are a way of allowing a one-to-many relationship across multiple teams and remote CI nodes.</p>
+<p>When a feeder discovers a new artifact, this is communicated to the DCI Control-Server by creating a new <em>component</em>. When a component is created, a new <em>jobdefinition</em> is created, and both of those are associated against the topic that the feed is configured for.</p>
+<p>Lets create a new topic called <code>testing</code>:</p>
+<pre><code>dcictl topic-create --name testing
++------------+--------------------------------------+
+|  Property  |                Value                 |
++------------+--------------------------------------+
+| created_at | 2016-03-10T18:30:07.090010           |
+| etag       | a1cbda432e24f113f2d5e173ce64e1a2     |
+| id         | be660493-8a69-4a53-8fc3-14545e6f9d85 |
+| name       | testing                              |
+| updated_at | 2016-03-10T18:30:07.090084           |
++------------+--------------------------------------+
+</code></pre><h4 id="attach-a-topic-to-a-team">Attach a topic to a team</h4>
+<p>By attaching a team to a topic, you are stating that you want to be notified of new <em>jobdefinitions</em> associated with that topic. The nice side-effect of utilizing topics, is that you can also have multiple teams subscribed to changes of that topic, and get a wide range of tests performed through the creation of a single artifact.</p>
+<p>Lets assign our newly created team <code>testing_team</code> to the <code>testing</code> topic:</p>
+<pre><code>dcictl topic-attach-team \
+    --id be660493-8a69-4a53-8fc3-14545e6f9d85 \
+    --team_id 9db7f0c7-d7b8-473e-9e36-2e66ea0b1c6e
+
++----------+--------------------------------------+
+| Property |                Value                 |
++----------+--------------------------------------+
+| team_id  | 9db7f0c7-d7b8-473e-9e36-2e66ea0b1c6e |
+| topic_id | be660493-8a69-4a53-8fc3-14545e6f9d85 |
++----------+--------------------------------------+
+</code></pre><p>We can view the list of teams associated with the topic via:</p>
+<pre><code>dcictl topic-list-team --id be660493-8a69-4a53-8fc3-14545e6f9d85
+</code></pre><h3 id="connecting-a-feeder-to-dci-control-server">Connecting a Feeder to DCI Control-Server</h3>
+<p>Next we need to attach the feeder to the DCI Control-Server to allow it to create components for us when a new artifact is found. The following will be configured on your remote CI server (for demonstration purposes), but in a typical production setup you would deploy this in it&apos;s own separate node.</p>
+<h4 id="configuring-the-github-feeder">Configuring the Github Feeder</h4>
+<p>A few different feeders exist in the <a href="http://github.com/redhat-cip/python-dciclient" target="_blank">python-dciclient</a> repository. We&apos;re going to look at the Github feeder as it&apos;s a simple implementation to look for new commits on a Github repository and create new Jobdefinitions within the DCI Control-Server.</p>
+<p>We&apos;re going to use the Github feeder to monitor for new commits to a repository. Feeders are available in the <code>/usr/bin/</code> directory, typically prefixed with <code>dci-feeder</code>.</p>
+<h5 id="setting-up-a-new-user">Setting up a new user</h5>
+<p>The DCI feeder takes the same environment variables (and flags) as the <code>dcictl</code> command does. Before we setup our environment variables however, lets create a new user on the DCI Control-Server that we can authenticate against within our new <code>testing_team</code>.</p>
+<pre><code>dcictl user-create --name remoteci_1 \
+    --password welcome \
+    --role user \
+    --team_id 9db7f0c7-d7b8-473e-9e36-2e66ea0b1c6e
+
++------------+--------------------------------------+
+|  Property  |                Value                 |
++------------+--------------------------------------+
+| created_at | 2016-03-10T18:46:17.349491           |
+| etag       | 30768cbc5ead17c76d598282bbcb6f43     |
+| id         | 66f08830-4500-43b6-be41-5605b765eb6c |
+| name       | remoteci_1                           |
+| role       | user                                 |
+| team_id    | 9db7f0c7-d7b8-473e-9e36-2e66ea0b1c6e |
+| updated_at | 2016-03-10T18:46:17.349509           |
++------------+--------------------------------------+
+</code></pre><p>We&apos;ve configured a new user called <code>remoteci_1</code> with the role of <code>user</code> within the <code>testing_team</code>. Let&apos;s test our agent by connecting to the DCI Control-Server at the console.</p>
+<p>The user namespace is flat, so you can&apos;t have duplicate usernames across multiple teams.</p>
+<h5 id="connecting-to-an-artifact-resource">Connecting to an artifact resource</h5>
+<p>In order to create a new <em>component</em> and <em>jobdefinition</em> on the DCI Control-Server, we need to connect to a resource that will provide us the artifact. Using a simple Github repository is sufficient for this. First, get the repository that you want to monitor. You can do this via the <em>copy</em> icon on the status bar at the top of any repository.</p>
+<p>Be sure to remove the <code>.git</code> extension from the URL or else you&apos;ll get an error from the DCI Control-Server</p>
+<p>Let&apos;s pass the Github URL along with our topic ID and login information to the <code>dci-feeder-github</code> application.</p>
+<pre><code>/usr/bin/dci-feeder-github \
+    --dci-cs-url &apos;http://api.nfvci.int&apos; \
+    --dci-login remoteci_1 \
+    --dci-password welcome \
+    --dci-topic-id be660493-8a69-4a53-8fc3-14545e6f9d85 \
+    --github-url http://github.com/redhat-cip/python-dciclient
+</code></pre><p>We pass several flags to the <code>dci-feeder-github</code> application in order to authenticate and connect to our DCI Control-Server. The <code>--dci-topic-id</code> contains the <code>topic_id</code> value we created earlier The <code>--github-url</code> flag is the URL for our artifact source.</p>
+<p>You&apos;ll notice that we&apos;ve used <code>http://api.nfvci.int</code> as our hostname for the DCI Control-Server. When you configured the DCI Control-Server initially (especially if you used the <a href="https://github.com/redhat-cip/dci-infra" target="_blank">dci-infra</a> Ansible playbook) you would have provided a hostname that the API would be hosted under, handled via an Apache VirtualHost configuration.</p>
+<p>If you don&apos;t have a world routable IP address and hostname, you can add the hostname to your /etc/hosts file in order to allow it to work from your remote CI server over your LAN.</p>
+<p>After running the <code>dci-feeder-github</code> command, your console should have returned with something like the following:</p>
+<pre><code>Use test &apos;python-dciclient - f032061de28b8f9e16767ff6b51307596c0ba648&apos;
+Create component &apos;python-dciclient - f032061de28b8f9e16767ff6b51307596c0ba648&apos;,
+type &apos;git_commit&apos;
+Jobdefinition &apos;python-dciclient - f032061de28b8f9e16767ff6b51307596c0ba648&apos;
+created.
+</code></pre><h5 id="validation">Validation</h5>
+<p>We can validate that our <em>component</em> and <em>jobdefinition</em> were created by using the <code>dcictl</code> console application.</p>
+<p>You&apos;ll need to install the <code>dcictl</code> application on the remote CI server before running the following command. See <a href="">Configuring DCI Control-Server</a> for a refresher on which package to install.</p>
+<p>Check <em>jobdefinition</em> list:</p>
+<pre><code>dcictl \
+    --dci-login remoteci_1 \
+    --dci-password welcome \
+    jobdefinition-list --topic_id be660493-8a69-4a53-8fc3-14545e6f9d85
+</code></pre><p>Check <em>component</em> list:</p>
+<pre><code>dcictl \
+    --dci-login remoteci_1 \
+    --dci-password welcome \
+    component-list --topic_id be660493-8a69-4a53-8fc3-14545e6f9d85
+</code></pre><h5 id="running-a-feeder-using-systemd">Running a feeder using systemd</h5>
+<p>Now that we&apos;ve validated our feeder, we can instantiate the feeder from <strong>systemd</strong> instead of running things manually on the console. When the feeders are installed from the RPM, systemd unit files are also installed. These systemd unit file templates allow you to instantiate one or more feeders, and set them up to run periodically.</p>
+<p>Our Github systemd unit file is located in <code>/usr/lib/systemd/system/</code> as files <code>dci-feeder-github@.service</code> and <code>dci-feeder-github@.timer</code> which are the templates for scheduling one-off and periodic feeder runs (respectively).</p>
+<p><strong>Using Systemd Templates</strong></p>
+<p>When using systemd templates, you pass an argument to the template, such as a filename containing environment variable information. The format for this argument is a bit unique, which can take some getting used to.</p>
+<p>Inside the template are markers that get replaced during unit creation. In the case of the <code>dci-feeder-github</code> templates, the markers <code>%i</code> and <code>%I</code> are utilized. The lowercase version is replaced with the characters passed into the unit file between the <code>@</code> and the suffix of the unit name. The uppercase version is the same value, unescaped.</p>
+<p>As the escaping sequence can be a bit strange, we&apos;ll make use of the <code>systemd.escape</code> application to automatically build our escaped filenames for us. See <a href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html" target="_blank">systemd.unit</a> for more information.</p>
+<p>To setup our feeders with systemd, we need to first create a file to hold our environment variables so that the template understands where to look for information that will get passed to the feeder application. For the Github feeder, these are located in the <code>/etc/sysconfig/dci-feeder-github/</code> directory.</p>
+<p>Next we name the environment file based on the Github repository we&apos;re going to monitor. We&apos;ll make use of the <code>systemd-escape</code> command which will convert the repository name into the correct format.</p>
+<p>The way the escaping works (with it being passed to the unit template file, and then back out when it attempts to read the <code>EnvironmentFile</code> value), can get pretty confusing. We&apos;re going to eliminate some of the manual changes that would be required through a simple bash oneliner.</p>
+<p>We only need the organization and repository name from the Github URL (rather than the whole Github URL). For example, if we wanted to create a <em>component</em> and <em>jobdefinition</em> for <a href="https://github.com/redhat-cip/dci-infra" target="_blank">https://github.com/redhat-cip/dci-infra</a>, we&apos;d only need the <code>redhat-cip/dci-infra</code> portion of the URL.</p>
+<p>Let&apos;s pass this to the <code>systemd-escape</code> command and see what our escaped repository looks like:</p>
+<pre><code>systemd-escape redhat-cip/dci-infra
+redhat\x2dcip-dci\x2dinfra
+</code></pre><p>The next step is to create an environment file that contains the login information for our DCI Control-Server and the topic ID we want to associate the component and jobdefinition to. As noted earlier the format of the filename is particular, but we have a simple script we can run that will take some of the guesswork out of the file naming.</p>
+<pre><code>cd /etc/sysconfig/dci-feeder-github/
+touch $(systemd-escape redhat-cip/dci-infra | tr -d \\)
+</code></pre><p>Our resulting filename will be <code>redhatx2dcip-dcix2dinfra</code>, which is the same as our escaped output, but without the backslashes.</p>
+<p>Now we can modify the file and add the following environment variables:</p>
+<ul>
+<li><code>DCI_CS_URL</code></li>
+<li><code>DCI_LOGIN</code></li>
+<li><code>DCI_PASSWORD</code></li>
+<li><code>DCI_TOPIC_ID</code></li>
+</ul>
+<p>As before, set these values to your DCI Control-Server URL, login name, login password, and topic ID (to associate this feeder with).</p>
+<p>The last step is to pass this file to the systemd unit template, and create our component and jobdefinition.</p>
+<pre><code>systemctl start &apos;dci-feeder-github@redhat\x2dcip-dci\x2dinfra.service&apos;
+</code></pre><p>The service unit filename has been passed to <code>systemctl</code> in single quotes in order to automatically escape the backslashes.</p>
+<p>After running this command, if you don&apos;t have any errors, you should be able to validate that your component and jobdefinition were created on the DCI Control-Server. (See <a href="">Validation</a> for more information.)</p>
+<p>If you want to run this periodically on a timer, replace <code>.service</code> in the <code>systemctl</code> command with <code>.timer</code>. You can list the timed services with <code>systemctl list-timers</code>.</p>
+<pre><code>systemctl list-timers
+NEXT                         LEFT          LAST  PASSED  UNIT                                               ACTIVATES
+Tue 2016-03-15 00:10:00 UTC  5h 18min left n/a   n/a     dci-feeder-github@redhat\x2dcip-dci\x2dinfra.timer dci-feeder-github@redhat\x2dcip-dci\x2dinfra.service
+</code></pre><h5 id="next-steps">Next steps</h5>
+<p>Now that we&apos;ve configured our <em>feeder</em>, the next step is to deploy an <em>agent</em> on our remote CI node to complete the pipeline. See <a href="agent.html">Agents</a> for more information.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../dci-control-server/docs/signature_authentication.html" class="navigation navigation-prev " aria-label="Previous page: signature_authentication">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../dci-ui/" class="navigation navigation-next " aria-label="Next page: dci-ui">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"dci-feeder","level":"1.6","depth":1,"next":{"title":"dci-ui","level":"1.7","depth":1,"path":"dci-ui/README.md","ref":"dci-ui/README.md","articles":[]},"previous":{"title":"signature_authentication","level":"1.5.1","depth":2,"path":"dci-control-server/docs/signature_authentication.md","ref":"dci-control-server/docs/signature_authentication.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-feeder/README.md","mtime":"2017-09-14T08:18:35.424Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T09:06:15.367Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

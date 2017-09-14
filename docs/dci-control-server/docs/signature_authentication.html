@@ -1,0 +1,373 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>signature_authentication · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../dci-feeder/" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../terminology.html">
+            
+                <a href="../../terminology.html">
+            
+                    
+                    Terminology
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../dci-dev-env/">
+            
+                <a href="../../dci-dev-env/">
+            
+                    
+                    dci-dev-env
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../dci-ansible-agent/">
+            
+                <a href="../../dci-ansible-agent/">
+            
+                    
+                    dci-ansible-agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    dci-control-server
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.5.1" data-path="signature_authentication.html">
+            
+                <a href="signature_authentication.html">
+            
+                    
+                    signature_authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../dci-feeder/">
+            
+                <a href="../../dci-feeder/">
+            
+                    
+                    dci-feeder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../dci-ui/">
+            
+                <a href="../../dci-ui/">
+            
+                    
+                    dci-ui
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >signature_authentication</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="signature-authentication">Signature Authentication</h1>
+<p>Signature Authentication is the authentication mechanism used to authenticate API requests originating from a RemoteCI client.</p>
+<p>A RemoteCI client allow to have credentials dedicated to a RemoteCI shared with the members of a team (contrary to user credentials which should be kept personal).</p>
+<p>A signed API requests allows to:</p>
+<ul>
+<li>Authenticate a request with:<ul>
+<li>a RemoteCI ID,</li>
+<li>an API secret.</li>
+</ul>
+</li>
+<li>Secured against modification during transit as all its content is signed.</li>
+<li>Secured aginst replay by carrying a timestamp (which is also part of the signed content) which must fit in &#xB1; 5 minutes around the reception of the request on the server.</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<p>Along each request, the client must add the two following HTTP headers:</p>
+<ul>
+<li><code>DCI-Client-Info</code></li>
+<li><code>DCI-Auth-Signature</code></li>
+</ul>
+<p>They are build as following</p>
+<h3 id="dci-client-info">DCI-Client-Info</h3>
+<p>It should look like: <code>DCI-Client-Info: &lt;timestamp&gt;/remoteci/&lt;remoteci_id&gt;</code> with:</p>
+<ul>
+<li><code>&lt;timestamp&gt;</code>: the current client timestamp in UTC timezone with the following format: <code>YYYY-MM-DD HH:MI:SSZ</code> (e.g.: <code>2017-06-12 14:29:17Z</code>)</li>
+<li><code>&lt;remoteci_id&gt;</code>: the RemoteCI ID found in the RemoteCI description</li>
+</ul>
+<h3 id="dci-auth-signature">DCI-Auth-Signature</h3>
+<p>The signature header <code>DCI-Auth-Signature: &lt;signature&gt;</code> is obtained with:</p>
+<ul>
+<li><code>&lt;signature&gt;</code>: <code>hexdigest( HMAC-SHA256( &lt;api secret&gt;, &lt;string_to_sign&gt;.encode(&apos;utf-8&apos;) ) )</code></li>
+<li><code>&lt;api secret&gt;</code>: the API Secret found in the RemoteCI description</li>
+<li><p><code>&lt;string_to_sign&gt;</code>:</p>
+<pre><code> &lt;HTTP Verb&gt; + &quot;\n&quot;
+ &lt;Content-Type&gt; + &quot;\n&quot;
+ &lt;timestamp&gt; + &quot;\n&quot;
+ &lt;url&gt; + &quot;\n&quot;
+ &lt;query_string&gt; + &quot;\n&quot;
+ &lt;payload hash&gt;
+</code></pre><ul>
+<li><code>&lt;HTTP Verb&gt;</code>: the HTTP method used in uppercase</li>
+<li><code>&lt;Content-Type&gt;</code>: Usually <code>application/json</code> for API calls</li>
+<li><code>&lt;timestamp&gt;</code>: as previously, the client timestamp in UTC timezone with the following format: <code>YYYY-MM-DD HH:MI:SSZ</code></li>
+<li><code>&lt;url&gt;</code>: the resource path, without query string</li>
+<li><code>&lt;query_string&gt;</code>: the parameter passed when querying (the part after the <code>?</code> in the full URL)</li>
+<li><code>&lt;payload hash&gt;</code>: <code>hexdigest( SHA256( payload ) )</code></li>
+</ul>
+</li>
+</ul>
+<p>As an example, the following request:</p>
+<pre><code>PUT https://api.distributed-ci.io/api/v1/resource?param1=lala&amp;param2=trololo
+</code></pre><p>With the following JSON payload:</p>
+<pre><code>{ &apos;item&apos;: &apos;value&apos;, &apos;something&apos;: &apos;else&apos;, &apos;number&apos;: 51 }
+</code></pre><p>Would have the following <code>string_to_sign</code>:</p>
+<pre><code>PUT
+application/json
+2042-07-19 13:37:51Z
+/api/v1/resource
+param1=lala&amp;param2=trololo
+ee95288ecdd875c688ed98b3241508b47307601a06fabd06c9696fb6582671d1
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: dci-control-server">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../dci-feeder/" class="navigation navigation-next " aria-label="Next page: dci-feeder">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"signature_authentication","level":"1.5.1","depth":2,"next":{"title":"dci-feeder","level":"1.6","depth":1,"path":"dci-feeder/README.md","ref":"dci-feeder/README.md","articles":[]},"previous":{"title":"dci-control-server","level":"1.5","depth":1,"path":"dci-control-server/README.md","ref":"dci-control-server/README.md","articles":[{"title":"signature_authentication","level":"1.5.1","depth":2,"path":"dci-control-server/docs/signature_authentication.md","ref":"dci-control-server/docs/signature_authentication.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-control-server/docs/signature_authentication.md","mtime":"2017-09-14T08:18:35.460Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T09:06:15.367Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,369 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>dci-dev-env · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../dci-ansible-agent/" />
+    
+    
+    <link rel="prev" href="../terminology.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../terminology.html">
+            
+                <a href="../terminology.html">
+            
+                    
+                    Terminology
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    dci-dev-env
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../dci-ansible-agent/">
+            
+                <a href="../dci-ansible-agent/">
+            
+                    
+                    dci-ansible-agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../dci-control-server/">
+            
+                <a href="../dci-control-server/">
+            
+                    
+                    dci-control-server
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../dci-control-server/docs/signature_authentication.html">
+            
+                <a href="../dci-control-server/docs/signature_authentication.html">
+            
+                    
+                    signature_authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../dci-feeder/">
+            
+                <a href="../dci-feeder/">
+            
+                    
+                    dci-feeder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../dci-ui/">
+            
+                <a href="../dci-ui/">
+            
+                    
+                    dci-ui
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >dci-dev-env</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="development-environment">Development Environment</h1>
+<p>This page describes how to use docker compose in order to provide a development environment.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>To run dci in docker compose follow those steps:</p>
+<ul>
+<li>clone the dev repository: <a href="https://github.com/redhat-cip/dci-dev-env" target="_blank">https://github.com/redhat-cip/dci-dev-env</a></li>
+<li>clone all the dci related project into this repository:<ul>
+<li><a href="https://github.com/redhat-cip/dci-control-server" target="_blank">https://github.com/redhat-cip/dci-control-server</a></li>
+<li><a href="https://github.com/redhat-cip/python-dciclient" target="_blank">https://github.com/redhat-cip/python-dciclient</a></li>
+<li><a href="https://github.com/redhat-cip/dci-ui" target="_blank">https://github.com/redhat-cip/dci-ui</a></li>
+<li><a href="http://softwarefactory-project.io/r/dci-doc" target="_blank">http://softwarefactory-project.io/r/dci-doc</a></li>
+</ul>
+</li>
+<li>install docker-compose and git-review if you want to contribute, the correct versions are described in <a href="requirements.txt">requirements.txt</a> you can install those requirements by simply typing: <code>pip install -r requirements.txt</code></li>
+<li>launch the environment by running docker-compose: <code>docker-compose -f dci.yml up</code></li>
+</ul>
+<p>Now the environment is up and running, you can attach containers in order to run parts of the application. For further information see <a href="#containers">the containers section</a>.</p>
+<h2 id="containers">Containers</h2>
+<p>There are six containers, the first four are needed to run the application. The two last are helpers for the project.</p>
+<ul>
+<li><strong>dci_db</strong>: contains the postgresql database, it is started by default and serve the database on localhost port 5432.</li>
+<li><strong>dci_es</strong>: contains the elasticsearch database, it is started by default and serve on localhost port 9200 and 9300.</li>
+<li><strong>dci_api</strong>: contains the api of the application, it must be started manually (see <a href="#api-container">the following section for details</a>). The API is served on localhost port 5000.</li>
+<li><strong>dci_app</strong>: contains the web app of dci, it must be started manually (see <a href="#app-container">the following section for details</a>). The web application is served on localhost port 8000.</li>
+<li><strong>dci_tox</strong>: contains all the needed module for testing, it is not needed for running the application but is a helper in order to run tests on the client and the API (see <a href="#tox-container">the following section for details</a>).</li>
+<li><strong>dci_doc</strong>: helper for building the documentation of the project (see <a href="#doc-container">the following section for details</a>).</li>
+<li><strong>dci_dbwatcher</strong>: helper for interacting with the database. (see <a href="#dbwatcher-container">the following section for details</a>).</li>
+</ul>
+<h3 id="api-container">API container</h3>
+<p>In the following section we will assume that we run the commands in the dedicated container, just after attaching it with <code>docker attach &lt;container-name&gt;</code></p>
+<p>To initialize this container you need to perform some operations:</p>
+<ul>
+<li>initialize or reinitialize the database by running <a href="https://github.com/redhat-cip/dci-control-server/blob/master/scripts/db_provisioning.py" target="_blank">./scripts/db_provisioning.py</a></li>
+<li>start the development server by running <a href="https://github.com/redhat-cip/dci-control-server/blob/master/bin/dci-runtestserver" target="_blank">./bin/dci-runtestserver</a></li>
+</ul>
+<h3 id="app-container">APP container</h3>
+<p>In the following section we will assume that we run the commands in the dedicated container, just after attaching it with <code>docker attach &lt;container-name&gt;</code></p>
+<p>Like the api you need to perform some operations before running the app:</p>
+<ul>
+<li>install npm dependencies for the application: <code>npm install</code></li>
+<li>run the application: <code>gulp serve:dev</code></li>
+</ul>
+<p>This container also contains some targets for testing the frontend, see the <a href="https://github.com/redhat-cip/dci-ui/blob/master/gulpfile.js" target="_blank">gulpfile</a> for more informations.</p>
+<h3 id="tox-container">TOX container</h3>
+<p>In the following section we will assume that we run the commands in the dedicated container, just after attaching it with <code>docker attach &lt;container-name&gt;</code></p>
+<p>This container is a helper for launching tests on the client and/or the api, just navigate to the correct project directory and run the tox command in order to launch the tests.</p>
+<h3 id="doc-container">DOC container</h3>
+<p>This container is particular because it is not started by default. It only provides an entrypoint for the sphinx documentation generation.</p>
+<p>To run it and see the default commands type: <code>docker-compose -f dci.yml run doc</code></p>
+<p>To generate an html output of the doc for a preview type: <code>docker-compose -f dci.yml run doc html</code></p>
+<h3 id="dbwatcher-container">DBwatcher container</h3>
+<p>This container is ran, generates a schema of the db in png format, then stopped. You will have to run it again and attach it in order to interact with the database.</p>
+<p>To run and attach the container type: <code>docker-compose -f dci.yml run dbwatcher bash</code></p>
+<p>Then you can run <code>psql</code> it will directly attach to the dci_control_server database.</p>
+<p>If you want to generate the database schema again just run the container without overriding the entrypoint: <code>docker-compose -f dci.yml run dbwatcher</code></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../terminology.html" class="navigation navigation-prev " aria-label="Previous page: Terminology">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../dci-ansible-agent/" class="navigation navigation-next " aria-label="Next page: dci-ansible-agent">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"dci-dev-env","level":"1.3","depth":1,"next":{"title":"dci-ansible-agent","level":"1.4","depth":1,"path":"dci-ansible-agent/README.md","ref":"dci-ansible-agent/README.md","articles":[]},"previous":{"title":"Terminology","level":"1.2","depth":1,"path":"terminology.md","ref":"terminology.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-dev-env/README.md","mtime":"2017-09-14T08:24:11.919Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T09:06:15.367Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

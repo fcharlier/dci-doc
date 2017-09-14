@@ -1,0 +1,353 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Terminology · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="styles.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="dci-dev-env/" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="terminology.html">
+            
+                <a href="terminology.html">
+            
+                    
+                    Terminology
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="dci-dev-env/">
+            
+                <a href="dci-dev-env/">
+            
+                    
+                    dci-dev-env
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="dci-ansible-agent/">
+            
+                <a href="dci-ansible-agent/">
+            
+                    
+                    dci-ansible-agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="dci-control-server/">
+            
+                <a href="dci-control-server/">
+            
+                    
+                    dci-control-server
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="dci-control-server/docs/signature_authentication.html">
+            
+                <a href="dci-control-server/docs/signature_authentication.html">
+            
+                    
+                    signature_authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="dci-feeder/">
+            
+                <a href="dci-feeder/">
+            
+                    
+                    dci-feeder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="dci-ui/">
+            
+                <a href="dci-ui/">
+            
+                    
+                    dci-ui
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Terminology</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="terminology">Terminology</h1>
+<p>Like every project, Distributed CI has its own terms with specific meanings. As understanding those terms is key to grasp how DCI works, here is an exhaustive list with their meanings.</p>
+<h2 id="agent">Agent</h2>
+<p>The core purpose of DCI is that given a set of <a href="">Components</a>, an Agent subscribed to those components can pull them and do <strong>anything</strong> with them.</p>
+<p>The <strong>anything</strong> aforementioned is where the business-logic takes place. An Agent is a script where administrators specify what to do with the retrieved set of Components.</p>
+<h2 id="context">Context</h2>
+<p>A context is a namespace holding the connection information to a particular DCI control server. Both feeders and agents open a connection via the context module, and communicate with the API over that connection.</p>
+<h2 id="control-server">Control-Server</h2>
+<p>Distributed CI is a client/server application. The Control-Server is the server part.</p>
+<p>The Control-Server is where the <a href="">Components</a>, the <a href="">Jobs</a> and all the logs related to CI runs are stored and browsable. It is the central point of supervision to know the health of a given set of Components (a <a href="">Jobdefinition</a>) across all users. It also provides a modern web interface for users to browse the output of their Jobs.</p>
+<h2 id="components">Components</h2>
+<p>A Component is an artifact (file, package, url, etc.) that an <a href="">Agent</a> will take as input in its workflow. Those components are immutable and regularly updated with newer versions of the artifact through <a href="">Feeders</a>.</p>
+<h2 id="feeders">Feeders</h2>
+<p>A Feeder is a script in charge of uploading newer versions of <a href="">Components</a> to the <a href="">Control-Server</a>. They are run either event-based (new release) or schedule-based (e.g. once a day). Components are referenced via a <a href="">Jobdefinition</a> as created by the Feeder.</p>
+<h2 id="jobs">Jobs</h2>
+<p>A Job is the run of a <a href="">Jobdefinition</a> by a specific <a href="">Remote CI</a>. A single Jobdefinition can be run by N Remote CI, thus creating N jobs. The job will hold all the information related to the run of the <a href="">Agent</a> with this Jobdefinition, the log output, the result of test suite, job context file, etc.</p>
+<h2 id="jobdefinition">Jobdefinition</h2>
+<p>A Jobdefinition is a template describing the Components expected for a Job.</p>
+<p>Topics -----</p>
+<p>A topic is a subset of Jobdefinition. For example, OSPx.</p>
+<h2 id="jobstate">Jobstate</h2>
+<p>During a Job run, an <a href="">Agent</a> will go through the different Jobstates.</p>
+<p>Each Jobstate has a status from this list:</p>
+<ul>
+<li>new</li>
+<li>pre-run</li>
+<li>running</li>
+<li>post-run</li>
+<li>failure</li>
+<li>success</li>
+</ul>
+<p>During each Jobstate the Agent will perform different tasks. Files can be attach to the Jobstate.</p>
+<h2 id="remote-ci">Remote CI</h2>
+<p>A platform and the production configuration. It belongs to a <a href="">Team</a>. The platform can be physical, virtual or hybrid.</p>
+<p>One of the nodes is the jumpbox. It will host the Agent, this service is in charge of the interactions with the Control-Server and the platform. A Remote CI is associated to a set of Topics.</p>
+<h2 id="team">Team</h2>
+<p>A Team is a set of <a href="">Users</a> and <a href="">Remote CI</a>.</p>
+<h2 id="users">Users</h2>
+<p>A User belongs to a <a href="">Team</a>, and can be an administrator or standard user.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="dci-dev-env/" class="navigation navigation-next " aria-label="Next page: dci-dev-env">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Terminology","level":"1.2","depth":1,"next":{"title":"dci-dev-env","level":"1.3","depth":1,"path":"dci-dev-env/README.md","ref":"dci-dev-env/README.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"terminology.md","mtime":"2017-09-14T08:46:44.320Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T09:06:15.367Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
