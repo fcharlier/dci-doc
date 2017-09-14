@@ -17,15 +17,15 @@
     
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
                 
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
                 
             
         
@@ -236,15 +236,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="feeders">Feeders</h1>
+                                <h1 id="feeders"><a name="feeders" class="plugin-anchor" href="#feeders"><i class="fa fa-link" aria-hidden="true"></i></a>Feeders</h1>
 <p>A Feeder is a script in charge of uploading newer versions of Components to the Control-Server. They are run either event-based (new release) or schedule-based (e.g. once a day). Components are referenced via a Jobdefinition as created by the Feeder.</p>
 <p>Various Feeders can be configured to monitor for the creation of new artifacts. When a new artifact is available, the feeder can then upload the artifact as a Component to the DCI Control-Server and make a Jobdefinition available to the Agents so that they can create and execute a new job.</p>
 <p>DCI doesn&apos;t have a bias towards where the artifact comes from, so scripts can be easily created using the <code>dciclient</code> library.</p>
-<h2 id="installing-feeders">Installing Feeders</h2>
+<h2 id="installing-feeders"><a name="installing-feeders" class="plugin-anchor" href="#installing-feeders"><i class="fa fa-link" aria-hidden="true"></i></a>Installing Feeders</h2>
 <p>Installing the available feeders is as simple as installing the dci-feeders RPM.:</p>
 <pre><code>$ sudo yum install dci-feeders -y
-</code></pre><h2 id="setting-up-feeders">Setting Up Feeders</h2>
-<h3 id="configuring-dci-control-server">Configuring DCI Control-Server</h3>
+</code></pre><h2 id="setting-up-feeders"><a name="setting-up-feeders" class="plugin-anchor" href="#setting-up-feeders"><i class="fa fa-link" aria-hidden="true"></i></a>Setting Up Feeders</h2>
+<h3 id="configuring-dci-control-server"><a name="configuring-dci-control-server" class="plugin-anchor" href="#configuring-dci-control-server"><i class="fa fa-link" aria-hidden="true"></i></a>Configuring DCI Control-Server</h3>
 <p>On the DCI Control-Server, we need to create a team, create a new topic for that team, and then attach the newly created topic to the team. We&apos;ll be doing this via the <code>dcictl</code> application.</p>
 <p>You can install the <code>dcictl</code> application via the <code>python2-dciclient</code> or <code>python3-dciclient</code> package.</p>
 <p>Next we&apos;ll be doing the following things</p>
@@ -253,7 +253,7 @@
 <li>Create a topic</li>
 <li>Attach a topic to a team</li>
 </ul>
-<h4 id="setup-environment">Setup environment</h4>
+<h4 id="setup-environment"><a name="setup-environment" class="plugin-anchor" href="#setup-environment"><i class="fa fa-link" aria-hidden="true"></i></a>Setup environment</h4>
 <p>To make things easier on ourselves, we&apos;re going to setup the environment so that we don&apos;t need to pass multiple flags to <code>dcictl</code> in order to connect and login to the API server.</p>
 <p>The following environment variables are available to us to save us some time:</p>
 <ul>
@@ -267,7 +267,7 @@
 export DCI_PASSWORD=admin
 export DCI_CS_URL=&apos;http://127.0.0.1:80&apos;
 </code></pre><p>When done, source the file via <code>source ~/.bashrc</code> to load them into memory.</p>
-<h4 id="create-a-team">Create a team</h4>
+<h4 id="create-a-team"><a name="create-a-team" class="plugin-anchor" href="#create-a-team"><i class="fa fa-link" aria-hidden="true"></i></a>Create a team</h4>
 <p>Let&apos;s create a new team for our feeder. If you&apos;ve previously created a team then you can skip this step.</p>
 <pre><code>dcictl team-create --name testing_team
 +------------+--------------------------------------+
@@ -282,7 +282,7 @@ export DCI_CS_URL=&apos;http://127.0.0.1:80&apos;
 </code></pre><p>Note the <code>id</code> field of the team. You can get this information again via:</p>
 <pre><code>dcictl team-list
 </code></pre><p>The <code>etag</code> field is the entity tag, which changes whenever the resource data is updated. In order to update various resources on the DCI Control-Server, you will need this <code>etag</code> value.</p>
-<h4 id="create-a-topic">Create a topic</h4>
+<h4 id="create-a-topic"><a name="create-a-topic" class="plugin-anchor" href="#create-a-topic"><i class="fa fa-link" aria-hidden="true"></i></a>Create a topic</h4>
 <p>Topics are a way of allowing a one-to-many relationship across multiple teams and remote CI nodes.</p>
 <p>When a feeder discovers a new artifact, this is communicated to the DCI Control-Server by creating a new <em>component</em>. When a component is created, a new <em>jobdefinition</em> is created, and both of those are associated against the topic that the feed is configured for.</p>
 <p>Lets create a new topic called <code>testing</code>:</p>
@@ -296,7 +296,7 @@ export DCI_CS_URL=&apos;http://127.0.0.1:80&apos;
 | name       | testing                              |
 | updated_at | 2016-03-10T18:30:07.090084           |
 +------------+--------------------------------------+
-</code></pre><h4 id="attach-a-topic-to-a-team">Attach a topic to a team</h4>
+</code></pre><h4 id="attach-a-topic-to-a-team"><a name="attach-a-topic-to-a-team" class="plugin-anchor" href="#attach-a-topic-to-a-team"><i class="fa fa-link" aria-hidden="true"></i></a>Attach a topic to a team</h4>
 <p>By attaching a team to a topic, you are stating that you want to be notified of new <em>jobdefinitions</em> associated with that topic. The nice side-effect of utilizing topics, is that you can also have multiple teams subscribed to changes of that topic, and get a wide range of tests performed through the creation of a single artifact.</p>
 <p>Lets assign our newly created team <code>testing_team</code> to the <code>testing</code> topic:</p>
 <pre><code>dcictl topic-attach-team \
@@ -311,12 +311,12 @@ export DCI_CS_URL=&apos;http://127.0.0.1:80&apos;
 +----------+--------------------------------------+
 </code></pre><p>We can view the list of teams associated with the topic via:</p>
 <pre><code>dcictl topic-list-team --id be660493-8a69-4a53-8fc3-14545e6f9d85
-</code></pre><h3 id="connecting-a-feeder-to-dci-control-server">Connecting a Feeder to DCI Control-Server</h3>
+</code></pre><h3 id="connecting-a-feeder-to-dci-control-server"><a name="connecting-a-feeder-to-dci-control-server" class="plugin-anchor" href="#connecting-a-feeder-to-dci-control-server"><i class="fa fa-link" aria-hidden="true"></i></a>Connecting a Feeder to DCI Control-Server</h3>
 <p>Next we need to attach the feeder to the DCI Control-Server to allow it to create components for us when a new artifact is found. The following will be configured on your remote CI server (for demonstration purposes), but in a typical production setup you would deploy this in it&apos;s own separate node.</p>
-<h4 id="configuring-the-github-feeder">Configuring the Github Feeder</h4>
+<h4 id="configuring-the-github-feeder"><a name="configuring-the-github-feeder" class="plugin-anchor" href="#configuring-the-github-feeder"><i class="fa fa-link" aria-hidden="true"></i></a>Configuring the Github Feeder</h4>
 <p>A few different feeders exist in the <a href="http://github.com/redhat-cip/python-dciclient" target="_blank">python-dciclient</a> repository. We&apos;re going to look at the Github feeder as it&apos;s a simple implementation to look for new commits on a Github repository and create new Jobdefinitions within the DCI Control-Server.</p>
 <p>We&apos;re going to use the Github feeder to monitor for new commits to a repository. Feeders are available in the <code>/usr/bin/</code> directory, typically prefixed with <code>dci-feeder</code>.</p>
-<h5 id="setting-up-a-new-user">Setting up a new user</h5>
+<h5 id="setting-up-a-new-user"><a name="setting-up-a-new-user" class="plugin-anchor" href="#setting-up-a-new-user"><i class="fa fa-link" aria-hidden="true"></i></a>Setting up a new user</h5>
 <p>The DCI feeder takes the same environment variables (and flags) as the <code>dcictl</code> command does. Before we setup our environment variables however, lets create a new user on the DCI Control-Server that we can authenticate against within our new <code>testing_team</code>.</p>
 <pre><code>dcictl user-create --name remoteci_1 \
     --password welcome \
@@ -336,7 +336,7 @@ export DCI_CS_URL=&apos;http://127.0.0.1:80&apos;
 +------------+--------------------------------------+
 </code></pre><p>We&apos;ve configured a new user called <code>remoteci_1</code> with the role of <code>user</code> within the <code>testing_team</code>. Let&apos;s test our agent by connecting to the DCI Control-Server at the console.</p>
 <p>The user namespace is flat, so you can&apos;t have duplicate usernames across multiple teams.</p>
-<h5 id="connecting-to-an-artifact-resource">Connecting to an artifact resource</h5>
+<h5 id="connecting-to-an-artifact-resource"><a name="connecting-to-an-artifact-resource" class="plugin-anchor" href="#connecting-to-an-artifact-resource"><i class="fa fa-link" aria-hidden="true"></i></a>Connecting to an artifact resource</h5>
 <p>In order to create a new <em>component</em> and <em>jobdefinition</em> on the DCI Control-Server, we need to connect to a resource that will provide us the artifact. Using a simple Github repository is sufficient for this. First, get the repository that you want to monitor. You can do this via the <em>copy</em> icon on the status bar at the top of any repository.</p>
 <p>Be sure to remove the <code>.git</code> extension from the URL or else you&apos;ll get an error from the DCI Control-Server</p>
 <p>Let&apos;s pass the Github URL along with our topic ID and login information to the <code>dci-feeder-github</code> application.</p>
@@ -355,7 +355,7 @@ Create component &apos;python-dciclient - f032061de28b8f9e16767ff6b51307596c0ba6
 type &apos;git_commit&apos;
 Jobdefinition &apos;python-dciclient - f032061de28b8f9e16767ff6b51307596c0ba648&apos;
 created.
-</code></pre><h5 id="validation">Validation</h5>
+</code></pre><h5 id="validation"><a name="validation" class="plugin-anchor" href="#validation"><i class="fa fa-link" aria-hidden="true"></i></a>Validation</h5>
 <p>We can validate that our <em>component</em> and <em>jobdefinition</em> were created by using the <code>dcictl</code> console application.</p>
 <p>You&apos;ll need to install the <code>dcictl</code> application on the remote CI server before running the following command. See <a href="">Configuring DCI Control-Server</a> for a refresher on which package to install.</p>
 <p>Check <em>jobdefinition</em> list:</p>
@@ -368,7 +368,7 @@ created.
     --dci-login remoteci_1 \
     --dci-password welcome \
     component-list --topic_id be660493-8a69-4a53-8fc3-14545e6f9d85
-</code></pre><h5 id="running-a-feeder-using-systemd">Running a feeder using systemd</h5>
+</code></pre><h5 id="running-a-feeder-using-systemd"><a name="running-a-feeder-using-systemd" class="plugin-anchor" href="#running-a-feeder-using-systemd"><i class="fa fa-link" aria-hidden="true"></i></a>Running a feeder using systemd</h5>
 <p>Now that we&apos;ve validated our feeder, we can instantiate the feeder from <strong>systemd</strong> instead of running things manually on the console. When the feeders are installed from the RPM, systemd unit files are also installed. These systemd unit file templates allow you to instantiate one or more feeders, and set them up to run periodically.</p>
 <p>Our Github systemd unit file is located in <code>/usr/lib/systemd/system/</code> as files <code>dci-feeder-github@.service</code> and <code>dci-feeder-github@.timer</code> which are the templates for scheduling one-off and periodic feeder runs (respectively).</p>
 <p><strong>Using Systemd Templates</strong></p>
@@ -402,7 +402,7 @@ touch $(systemd-escape redhat-cip/dci-infra | tr -d \\)
 <pre><code>systemctl list-timers
 NEXT                         LEFT          LAST  PASSED  UNIT                                               ACTIVATES
 Tue 2016-03-15 00:10:00 UTC  5h 18min left n/a   n/a     dci-feeder-github@redhat\x2dcip-dci\x2dinfra.timer dci-feeder-github@redhat\x2dcip-dci\x2dinfra.service
-</code></pre><h5 id="next-steps">Next steps</h5>
+</code></pre><h5 id="next-steps"><a name="next-steps" class="plugin-anchor" href="#next-steps"><i class="fa fa-link" aria-hidden="true"></i></a>Next steps</h5>
 <p>Now that we&apos;ve configured our <em>feeder</em>, the next step is to deploy an <em>agent</em> on our remote CI node to complete the pipeline. See <a href="agent.html">Agents</a> for more information.</p>
 
                                 
@@ -447,7 +447,7 @@ Tue 2016-03-15 00:10:00 UTC  5h 18min left n/a   n/a     dci-feeder-github@redha
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"dci-feeder","level":"1.6","depth":1,"next":{"title":"dci-ui","level":"1.7","depth":1,"path":"dci-ui/README.md","ref":"dci-ui/README.md","articles":[]},"previous":{"title":"signature_authentication","level":"1.5.1","depth":2,"path":"dci-control-server/docs/signature_authentication.md","ref":"dci-control-server/docs/signature_authentication.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-feeder/README.md","mtime":"2017-09-14T08:18:35.424Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T09:06:15.367Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"dci-feeder","level":"1.6","depth":1,"next":{"title":"dci-ui","level":"1.7","depth":1,"path":"dci-ui/README.md","ref":"dci-ui/README.md","articles":[]},"previous":{"title":"signature_authentication","level":"1.5.1","depth":2,"path":"dci-control-server/docs/signature_authentication.md","ref":"dci-control-server/docs/signature_authentication.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","-fontsettings","-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-feeder/README.md","mtime":"2017-09-14T08:18:35.424Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T10:05:17.689Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -470,10 +470,6 @@ Tue 2016-03-15 00:10:00 UTC  5h 18min left n/a   n/a     dci-feeder-github@redha
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 

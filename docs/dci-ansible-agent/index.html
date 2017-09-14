@@ -17,15 +17,15 @@
     
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
                 
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
                 
             
         
@@ -236,9 +236,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="dci-ansible-agent">DCI Ansible Agent</h1>
-<h2 id="first-steps">First steps</h2>
-<h3 id="install-the-rpm">Install the rpm</h3>
+                                <h1 id="dci-ansible-agent"><a name="dci-ansible-agent" class="plugin-anchor" href="#dci-ansible-agent"><i class="fa fa-link" aria-hidden="true"></i></a>DCI Ansible Agent</h1>
+<h2 id="first-steps"><a name="first-steps" class="plugin-anchor" href="#first-steps"><i class="fa fa-link" aria-hidden="true"></i></a>First steps</h2>
+<h3 id="install-the-rpm"><a name="install-the-rpm" class="plugin-anchor" href="#install-the-rpm"><i class="fa fa-link" aria-hidden="true"></i></a>Install the rpm</h3>
 <p>You be able to install the rpm of DCI Ansible Agent, you will need to activate some extra repositories.</p>
 <p>If you are running RHEL7, you need to enable a couple of extra channels:</p>
 <pre><code>subscription-manager repos &apos;--disable=\*&apos; --enable=rhel-7-server-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-extras-rpms
@@ -247,7 +247,7 @@
 yum install -y &lt;https://packages.distributed-ci.io/dci-release.el7.noarch.rpm&gt;
 </code></pre><p>You can now install the <code>dci-ansible-agent</code> package:</p>
 <pre><code>yum install -y dci-ansible-agent
-</code></pre><h3 id="configuration">Configuration</h3>
+</code></pre><h3 id="configuration"><a name="configuration" class="plugin-anchor" href="#configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Configuration</h3>
 <p>You start using the DCI Ansible Agent, you need to adjust a couple of configuration files. The first one is `/etc/dci-ansible-agent/dcirc.sh`:</p>
 <pre><code>#!/bin/bash
 DCI_CS_URL=&quot;https://api.distributed-ci.io/&quot;
@@ -305,7 +305,7 @@ dci_cache_dir: &quot;/var/lib/dci-ansible-agent&quot;
 <li><p>`teardown.yml`: this playbook clean the full playform.</p>
 </li>
 </ul>
-<h3 id="start-the-service">Start the service</h3>
+<h3 id="start-the-service"><a name="start-the-service" class="plugin-anchor" href="#start-the-service"><i class="fa fa-link" aria-hidden="true"></i></a>Start the service</h3>
 <p>The agent comes with a systemd configuration that simplify its execution. You can just start the agent:</p>
 <pre><code>systemctl start dci-ansible-agent
 </code></pre><p>Use journalctl to follow the agent execution:</p>
@@ -314,7 +314,7 @@ dci_cache_dir: &quot;/var/lib/dci-ansible-agent&quot;
 <pre><code>su - dci-ansible-agent -s /bin/bash
 </code></pre><p>This is for example necessary if you want to create a ssh key:</p>
 <pre><code>$ ssh-keygen
-</code></pre><h3 id="use-the-timers">Use the timers</h3>
+</code></pre><h3 id="use-the-timers"><a name="use-the-timers" class="plugin-anchor" href="#use-the-timers"><i class="fa fa-link" aria-hidden="true"></i></a>Use the timers</h3>
 <p>Two systemd timers are provided by the package, dci-ansible-agent.timer will ensure the agent will be call automatically severial time a day. dci-update.timer will refresh the dci packages automatically. To enable them, just run:</p>
 <pre><code>systemctl enable dci-ansible-agent.timer
 systemctl start dci-ansible-agent.timer
@@ -364,7 +364,7 @@ systemctl start dci-update.timer
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"dci-ansible-agent","level":"1.4","depth":1,"next":{"title":"dci-control-server","level":"1.5","depth":1,"path":"dci-control-server/README.md","ref":"dci-control-server/README.md","articles":[{"title":"signature_authentication","level":"1.5.1","depth":2,"path":"dci-control-server/docs/signature_authentication.md","ref":"dci-control-server/docs/signature_authentication.md","articles":[]}]},"previous":{"title":"dci-dev-env","level":"1.3","depth":1,"path":"dci-dev-env/README.md","ref":"dci-dev-env/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-ansible-agent/README.md","mtime":"2017-09-14T08:32:27.340Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T09:06:15.367Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"dci-ansible-agent","level":"1.4","depth":1,"next":{"title":"dci-control-server","level":"1.5","depth":1,"path":"dci-control-server/README.md","ref":"dci-control-server/README.md","articles":[{"title":"signature_authentication","level":"1.5.1","depth":2,"path":"dci-control-server/docs/signature_authentication.md","ref":"dci-control-server/docs/signature_authentication.md","articles":[]}]},"previous":{"title":"dci-dev-env","level":"1.3","depth":1,"path":"dci-dev-env/README.md","ref":"dci-dev-env/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","-fontsettings","-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-ansible-agent/README.md","mtime":"2017-09-14T08:32:27.340Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T10:05:17.689Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -387,10 +387,6 @@ systemctl start dci-update.timer
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 

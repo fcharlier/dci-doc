@@ -17,15 +17,15 @@
     
             
                 
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
                 
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
                 
             
         
@@ -236,7 +236,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="signature-authentication">Signature Authentication</h1>
+                                <h1 id="signature-authentication"><a name="signature-authentication" class="plugin-anchor" href="#signature-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Signature Authentication</h1>
 <p>Signature Authentication is the authentication mechanism used to authenticate API requests originating from a RemoteCI client.</p>
 <p>A RemoteCI client allow to have credentials dedicated to a RemoteCI shared with the members of a team (contrary to user credentials which should be kept personal).</p>
 <p>A signed API requests allows to:</p>
@@ -249,20 +249,20 @@
 <li>Secured against modification during transit as all its content is signed.</li>
 <li>Secured aginst replay by carrying a timestamp (which is also part of the signed content) which must fit in &#xB1; 5 minutes around the reception of the request on the server.</li>
 </ul>
-<h2 id="implementation">Implementation</h2>
+<h2 id="implementation"><a name="implementation" class="plugin-anchor" href="#implementation"><i class="fa fa-link" aria-hidden="true"></i></a>Implementation</h2>
 <p>Along each request, the client must add the two following HTTP headers:</p>
 <ul>
 <li><code>DCI-Client-Info</code></li>
 <li><code>DCI-Auth-Signature</code></li>
 </ul>
 <p>They are build as following</p>
-<h3 id="dci-client-info">DCI-Client-Info</h3>
+<h3 id="dci-client-info"><a name="dci-client-info" class="plugin-anchor" href="#dci-client-info"><i class="fa fa-link" aria-hidden="true"></i></a>DCI-Client-Info</h3>
 <p>It should look like: <code>DCI-Client-Info: &lt;timestamp&gt;/remoteci/&lt;remoteci_id&gt;</code> with:</p>
 <ul>
 <li><code>&lt;timestamp&gt;</code>: the current client timestamp in UTC timezone with the following format: <code>YYYY-MM-DD HH:MI:SSZ</code> (e.g.: <code>2017-06-12 14:29:17Z</code>)</li>
 <li><code>&lt;remoteci_id&gt;</code>: the RemoteCI ID found in the RemoteCI description</li>
 </ul>
-<h3 id="dci-auth-signature">DCI-Auth-Signature</h3>
+<h3 id="dci-auth-signature"><a name="dci-auth-signature" class="plugin-anchor" href="#dci-auth-signature"><i class="fa fa-link" aria-hidden="true"></i></a>DCI-Auth-Signature</h3>
 <p>The signature header <code>DCI-Auth-Signature: &lt;signature&gt;</code> is obtained with:</p>
 <ul>
 <li><code>&lt;signature&gt;</code>: <code>hexdigest( HMAC-SHA256( &lt;api secret&gt;, &lt;string_to_sign&gt;.encode(&apos;utf-8&apos;) ) )</code></li>
@@ -338,7 +338,7 @@ ee95288ecdd875c688ed98b3241508b47307601a06fabd06c9696fb6582671d1
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"signature_authentication","level":"1.5.1","depth":2,"next":{"title":"dci-feeder","level":"1.6","depth":1,"path":"dci-feeder/README.md","ref":"dci-feeder/README.md","articles":[]},"previous":{"title":"dci-control-server","level":"1.5","depth":1,"path":"dci-control-server/README.md","ref":"dci-control-server/README.md","articles":[{"title":"signature_authentication","level":"1.5.1","depth":2,"path":"dci-control-server/docs/signature_authentication.md","ref":"dci-control-server/docs/signature_authentication.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-control-server/docs/signature_authentication.md","mtime":"2017-09-14T08:18:35.460Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T09:06:15.367Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"signature_authentication","level":"1.5.1","depth":2,"next":{"title":"dci-feeder","level":"1.6","depth":1,"path":"dci-feeder/README.md","ref":"dci-feeder/README.md","articles":[]},"previous":{"title":"dci-control-server","level":"1.5","depth":1,"path":"dci-control-server/README.md","ref":"dci-control-server/README.md","articles":[{"title":"signature_authentication","level":"1.5.1","depth":2,"path":"dci-control-server/docs/signature_authentication.md","ref":"dci-control-server/docs/signature_authentication.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors","-fontsettings","-sharing"],"root":"./src","styles":{"website":"styles.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"dci-control-server/docs/signature_authentication.md","mtime":"2017-09-14T08:18:35.460Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-14T10:05:17.689Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -361,10 +361,6 @@ ee95288ecdd875c688ed98b3241508b47307601a06fabd06c9696fb6582671d1
     
         
         <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 
