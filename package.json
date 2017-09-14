@@ -2,13 +2,12 @@
   "name": "dci-doc",
   "version": "1.0.0",
   "description": "Documentation for DCI",
-  "main": "index.js",
   "scripts": {
     "dev": "gitbook serve",
     "clean": "rm -rf ./docs && mkdir ./docs",
     "pdf": "gitbook pdf ./ ./dci-doc-\"`echo $npm_package_version`\".pdf",
     "static": "gitbook build",
-    "build": "npm-run-all clean pdf static copy",
+    "build": "npm-run-all clean static copy",
     "copy": "cp -r ./_book/* ./docs/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "gitbook": "^3.2.3",
-    "gitbook-cli": "^2.3.2"
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-anchors": "^0.7.1"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.1"

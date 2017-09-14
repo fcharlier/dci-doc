@@ -3,5 +3,9 @@
   "styles": {
     "website": "styles.css"
   },
-  "plugins": ["-sharing"]
+  "plugins": [
+    "anchors",
+    "-fontsettings",
+    "-sharing"
+  ]
 }
